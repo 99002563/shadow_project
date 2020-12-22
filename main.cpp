@@ -29,6 +29,7 @@ ob.retrieve();
     if (ob.check_wireless(ifa->ifa_name, protocol)) {
          arr[g]=ifa->ifa_name;
         g++;
+
       printf("%d - interface %s is wireless: %s\n",g, ifa->ifa_name, protocol);
     } else {
         arr[g]=ifa->ifa_name;
@@ -40,7 +41,8 @@ ob.retrieve();
 
 
     }
-
+  int k=ob.totatNetworks(g);
+  
  ob.ipa();
 
 string s1;
@@ -49,20 +51,23 @@ string s1;
 
  int check,t;
  
-
+int f; 
 
 do{
   printf("\n");
+  f= ob.network();
   printf("<<enter c to perform enable/disable operation>>\n<<enter e to exit>>\n");
        cin>>ch;
 
-  
+  string sta;
          
   
        switch(ch){
-           case 'c': printf("<<enter network name>>\n<<1 to enable>> or <<0 to disable>>\n");
+           case 'c': f= ob.network();
+                     printf("<<enter network name>>\n<<1 to enable>> or <<0 to disable>>\n");
                     cin >>s1;
                     cin>>check;
+                    //  sta =   ob.getStatus(s1,check);
                      // net= ifa->ifa_name;
                      // check1= to_string(check);  
                       // t= test(net,check1);
@@ -74,13 +79,14 @@ do{
                      if(check == 0) {
                        che="OFF";
                      }
-
+                     f= ob.network();
                     t= ob.test(s1,che);
                    ob.status(check,s1);
                    ob.ipa();
                        
                       break;
            case 'e'://exit(1);
+                        f= ob.network();
          //  cout << "e is pressed"<<endl;
                    break;
            default:  cout<<"enter valid option"<< endl;
@@ -142,7 +148,11 @@ for(int i=0;i<j;i++){
 	cout << s10[i] << " "<< s11[i] << endl;
 }
 
+int on;
+on= ob.statusOn(s11,j);
 
+int te ;
+te= ob.mismatch(arr,s10,g,j);
 string res[100];
 int g1=0,j1=0,r1=0;
 while(g1<g && j1<j){
