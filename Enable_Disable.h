@@ -21,5 +21,9 @@ void operation2(int check,string s);
 int retrieve();
 void delete_data(string res[],int r1);
 int network();
+string getStatus(string st,int n);
+int totatNetworks(int a);
+int mismatch(string arr[],string s10[],int g,int j);
+int statusOn(string s10[],int j);
  };
 #endif
