@@ -176,7 +176,7 @@ else
     l=0;
 
 }
-operation2(l,s10[i]);
+operation(l,s10[i]);
 
 }
 
@@ -218,6 +218,7 @@ int Enable_Disable :: network(){
 
 
     }
+    return g;
 
 }
 
@@ -241,4 +242,61 @@ void Enable_Disable ::delete_data(string res[],int r1){
    }
     sqlite3_close(DB);
  
+}
+
+string Enable_Disable::  getStatus(string st,int check){
+if(check == 1)
+return "ON";
+return "OFF";
+}
+
+
+int Enable_Disable::totatNetworks(int a){
+  return a;
+}
+
+
+int  Enable_Disable:: mismatch(string arr[],string s10[],int g,int j){
+
+
+  string res[100];
+int g1=0,j1=0,r1=0;
+while(g1<g && j1<j){
+  if(arr[g1]!=s10[j1])
+{
+   res[r1] = s10[j1];
+   r1++;
+   
+}
+   g1++;
+   j1++;
+  // r1++;
+}
+
+if(j1< j || g1<g){
+while(j1<j){
+  res[r1]=s10[j1];
+  j1++;
+  r1++;
+}
+
+while(g1<g){
+  res[r1]=arr[g1];
+  g1++;
+  r1++;
+}
+}
+return r1;
+}
+
+int Enable_Disable:: statusOn(string s11[],int j){
+int count=0;
+for(int i=0;i<j;i++){
+  if(s11[i]=="ON"){
+        count++;
+  }
+ 
+}
+ return count;
+
 }
